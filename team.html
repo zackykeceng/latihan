@@ -1,0 +1,170 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Team - Tim Kolaborasi</title>
+  <link rel="stylesheet" href="css/style.css">
+  <style>
+    .team-container {
+      display: flex;
+      flex-wrap: wrap;
+      justify-content: center;
+      gap: 20px;
+      margin-top: 30px;
+    }
+
+    .member {
+      text-align: center;
+      border: 2px solid #ccc;
+      border-radius: 10px;
+      padding: 15px;
+      width: 180px;
+      transition: 0.3s;
+      cursor: pointer;
+    }
+
+    .member:hover {
+      background-color: #f0f0f0;
+      transform: scale(1.05);
+    }
+
+    /* Pop-up box */
+    .popup {
+      display: none;
+      position: fixed;
+      top: 50%;
+      left: 50%;
+      transform: translate(-50%, -50%);
+      background-color: white;
+      padding: 25px;
+      border-radius: 10px;
+      box-shadow: 0 0 10px rgba(0,0,0,0.3);
+      z-index: 1000;
+      text-align: center;
+      width: 300px;
+    }
+
+    .popup a {
+      display: inline-block;
+      margin-top: 10px;
+      color: #007bff;
+      text-decoration: none;
+    }
+
+    .popup a:hover {
+      text-decoration: underline;
+    }
+
+    .close-btn {
+      background: red;
+      color: white;
+      border: none;
+      border-radius: 5px;
+      padding: 5px 10px;
+      cursor: pointer;
+      margin-top: 10px;
+    }
+
+    .overlay {
+      display: none;
+      position: fixed;
+      top: 0;
+      left: 0;
+      width: 100%;
+      height: 100%;
+      background-color: rgba(0,0,0,0.5);
+      z-index: 999;
+    }
+  </style>
+</head>
+<body>
+  <header>
+    <h1>Tim Kami</h1>
+    <nav>
+      <a href="index.html">Home</a>
+      <a href="about.html">About</a>
+      <a href="team.html" class="active">Team</a>
+      <a href="contact.html">Contact</a>
+    </nav>
+  </header>
+
+  <main>
+    <section class="team-container">
+      <div class="member" data-name="Anggota 1" data-motto="Selalu berinovasi untuk masa depan." data-ig="https://instagram.com/anggota1">
+        <img src="https://via.placeholder.com/150" alt="Anggota 1">
+        <h3>Anggota 1</h3>
+        <p>Maintainer & Project Manager</p>
+      </div>
+
+      <div class="member" data-name="Anggota 2" data-motto="Kreativitas adalah kunci kemajuan." data-ig="https://instagram.com/anggota2">
+        <img src="https://via.placeholder.com/150" alt="Anggota 2">
+        <h3>Anggota 2</h3>
+        <p>Halaman Home</p>
+      </div>
+
+      <div class="member" data-name="Anggota 3" data-motto="Belajar tanpa henti adalah jalan sukses." data-ig="https://instagram.com/anggota3">
+        <img src="https://via.placeholder.com/150" alt="Anggota 3">
+        <h3>Anggota 3</h3>
+        <p>Halaman About</p>
+      </div>
+
+      <div class="member" data-name="Anggota 4" data-motto="Kerja tim membuat mimpi jadi nyata." data-ig="https://instagram.com/anggota4">
+        <img src="https://via.placeholder.com/150" alt="Anggota 4">
+        <h3>Anggota 4</h3>
+        <p>Halaman Team</p>
+      </div>
+
+      <div class="member" data-name="Anggota 5" data-motto="Komunikasi adalah kekuatan terbesar kita." data-ig="https://instagram.com/anggota5">
+        <img src="https://via.placeholder.com/150" alt="Anggota 5">
+        <h3>Anggota 5</h3>
+        <p>Halaman Contact</p>
+      </div>
+    </section>
+  </main>
+
+  <div class="overlay" id="overlay"></div>
+
+  <div class="popup" id="popup">
+    <h3 id="popupName"></h3>
+    <p id="popupMotto"></p>
+    <a id="popupIg" href="#" target="_blank">Kunjungi Instagram</a><br>
+    <button class="close-btn" id="closeBtn">Tutup</button>
+  </div>
+
+  <footer>
+    <p>© 2025 Tim Kolaborasi</p>
+  </footer>
+
+  <script>
+    const members = document.querySelectorAll('.member');
+    const popup = document.getElementById('popup');
+    const overlay = document.getElementById('overlay');
+    const popupName = document.getElementById('popupName');
+    const popupMotto = document.getElementById('popupMotto');
+    const popupIg = document.getElementById('popupIg');
+    const closeBtn = document.getElementById('closeBtn');
+
+    members.forEach(member => {
+      member.addEventListener('click', () => {
+        popupName.textContent = member.dataset.name;
+        popupMotto.textContent = member.dataset.motto;
+        popupIg.href = member.dataset.ig;
+
+        popup.style.display = 'block';
+        overlay.style.display = 'block';
+      });
+    });
+
+    closeBtn.addEventListener('click', () => {
+      popup.style.display = 'none';
+      overlay.style.display = 'none';
+    });
+
+    overlay.addEventListener('click', () => {
+      popup.style.display = 'none';
+      overlay.style.display = 'none';
+    });
+  </script>
+</body>
+</html>
